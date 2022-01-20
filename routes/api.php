@@ -32,3 +32,4 @@ Route::get('characteristics/{id}', [BuildingController::class, 'characteristic']
 Route::get('photos/{id}', [BuildingController::class, 'album']);
 
 Route::post('send/email', [ContactController::class, 'mail'])->name('email');
+Route::post('send/email/advertise', [ContactController::class, 'mailAdvertise'])->name('emailAdvertise');

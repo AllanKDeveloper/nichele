@@ -23,6 +23,7 @@ import {
     Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
+import axios from "axios";
 
 const QontoStepIconRoot = styled("div")(({ theme, ownerState }) => ({
     color: theme.palette.mode === "dark" ? theme.palette.grey[700] : "#eaeaf0",
@@ -399,9 +400,13 @@ export function Steps() {
                                 id="demo-simple-select-filled"
                                 value={age}
                                 onChange={handleChange}
-                                sx={{ width: "100%", borderRadius: '10px','&:before': {
-                                    display: "none",
-                                }  }}
+                                sx={{
+                                    width: "100%",
+                                    borderRadius: "10px",
+                                    "&:before": {
+                                        display: "none",
+                                    },
+                                }}
                             >
                                 <MenuItem value="Ap">Apartamento</MenuItem>
                             </Select>
@@ -502,9 +507,12 @@ export function Steps() {
                                     id="demo-simple-select-filled"
                                     value={uf}
                                     onChange={handleChange}
-                                    sx={{borderRadius: "10px",'&:before': {
-                                        display: "none",
-                                    }}}
+                                    sx={{
+                                        borderRadius: "10px",
+                                        "&:before": {
+                                            display: "none",
+                                        },
+                                    }}
                                 >
                                     <MenuItem value="rs">RS</MenuItem>
                                 </Select>
@@ -1325,6 +1333,21 @@ export function Steps() {
     };
 
     const BtnStep3 = () => {
+        // ENVIAR EMAIL COM A CONFIRMACAO
+        const data = {
+            name: "Teste",
+            email: "Teste",
+            phone: "Teste",
+            building: "Teste",
+            type: "Teste",
+        };
+        axios
+            .post("/api/send/email/advertise", data)
+            .then((response) => console.log(JSON.stringify(response.data))) // trocar
+            .catch((error) => {
+                console.log("ERROR:: ", error.response.data);
+            });
+
         return (
             <>
                 <Stack
